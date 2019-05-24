@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+
+}
+
+.wrapper{
+    background-color: #F3F3F3;
+
+}
+.request-form{
+    font:"Open Sans, Regular";
+}
+
+.black-text {
+   
+    color: #232222;
+    font-size:30px;
+}
+
+.brown-text{
+    color: #964D04;
+    font-size: 30px;
+
+}
+.weather-header{
+    font-size: 48px;
+
+}
+
+.weather-description{
+    font-family: "Raleway,Light";
+    color: #564949;
+}
+
+.weather-data{
+    font-family: "Veranda, Italic";
+    font-size: 30px;
+    color: #564949
+}   
+

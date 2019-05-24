@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style/template.css">
+    <title>Airport Finder</title>
+  </head>
+  <body>
+      <div id="app">
+                <h1>Airport Finder</h1>
+    
+                <input v-model = 
+                  "airportId"
+                  >
+                <button v-on:click=
+                  "getAirport"
+                  >
+                  Submit
+                </button>
+                <button v-on:click=
+                  "getAirport"
+                  >
+                  Next Airport
+                </button>
+              
+              <div>{{properties.stationIdentifier}}</div>
+              <div>{{properties.name}}</div>
+              <div>{{properties.timeZone}}</div>
+      </div>
+      
+    <script>
+      var APP_LOG_LIFECYCLE_EVENTS =true;
+          const app= new Vue({
+                el : "#app",
+                data: {
+                  //value from user input to set URL
+                    airportId:'',
+                    name:'',
+
+                    properties:'',
+                },
+               
+                
+                methods:{
+                  getAirport:
+                    function(){
+                        //this variable is to set the URL
+                      var airportId = this.airportId;
+                        //these variables are for the returned data
+                      var stationIdendtifier=this.stationIdentifier;  
+                      var name= this.name;
+                      var timeZone= this.timeZone;
+                     
+                      axios
+                      .get('https://api.weather.gov/stations/'+ airportId)
+                      .then(response => this.properties= response.data.properties)
+                      .catch(err=>console.log("error"))
+                    }
+
+                },   
+                destroyed: function(){
+                  if (APP_LOG_LIFECYCLE_EVENTS){
+                    console.log('destroyed');
+                  }
+                },
+                    
+            });
+    </script>
+      
+  </body>
+</html>
